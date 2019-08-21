@@ -1,0 +1,56 @@
+@using weddingPlanner.Models
+@model UserAndListOfWeddings
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <h1>Welcome to the Wedding Planner</h1>
+        <a href="/logout">Logout</a>
+
+        <a href="/new">New Wedding</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Wedding</th>
+                    <th>Date</th>
+                    <th>Guest</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach(Wedding wedding in Model.ListOfWeddings)
+                    {
+                        <tr>
+                            <td><a href="/wedding/@wedding.WeddingId">@wedding.WedderOne & @wedding.WedderTwo</a></td>
+                            <td>@wedding.WeddingDate.ToString("MMM d, yyyy")</td>
+                            <td>@wedding.WeddingsUsers.Count</td>
+                            <td>
+                                @{
+                                    if(wedding.Host == @Model.UsersWedding)
+                                    {
+                                        <a href="/delete/@wedding.WeddingId">Cancel Wedding</a>
+                                    }
+                                    else if(wedding.WeddingsUsers.Any(w => w.UserId == @Model.UsersWedding.UserId))
+                                    {
+                                        <a href="/remove/@wedding.WeddingId/@Model.UsersWedding.UserId">Un-RSVP</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/RSVP/@wedding.WeddingId/@Model.UsersWedding.UserId">RSVP</a>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </body>
+</html>

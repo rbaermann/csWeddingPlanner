@@ -1,0 +1,26 @@
+@using weddingPlanner.Models
+@model Wedding
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Wedding</title>
+    </head>
+    <body>
+        <h1>@Model.WedderOne and @Model.WedderTwo's Wedding</h1>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+        <h3>Date:</h3>
+        <p>@Model.WeddingDate.ToString("MMM d, yyyy")</p>
+        <h3>Guests:</h3>
+        @{
+            foreach(var guest in Model.WeddingsUsers)
+            {
+                <p>@guest.User.FirstName @guest.User.LastName</p>
+            }
+        }
+    </body>
+</html>

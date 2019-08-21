@@ -1,0 +1,63 @@
+﻿@using weddingPlanner.Models
+@model LoginAndReg
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Register</title>
+        <link rel="stylesheet" href="~/css/style.css">
+    </head>
+    <body>
+        <div>
+            <h1>Register</h1>
+
+            <form asp-action="Register" asp-controller="Home" method="POST">
+
+                <span asp-validation-for="NewUser.FirstName"></span>
+                <label asp-for="NewUser.FirstName">First Name</label>
+                <input asp-for="NewUser.FirstName">
+
+                <span asp-validation-for="NewUser.LastName"></span>
+                <label asp-for="NewUser.LastName">Last Name</label>
+                <input asp-for="NewUser.LastName">
+
+                <span asp-validation-for="NewUser.Email"></span>
+                <label asp-for="NewUser.Email">Email</label>
+                <input asp-for="NewUser.Email">
+
+                <span asp-validation-for="NewUser.Password"></span>
+                <label asp-for="NewUser.Password">Password</label>
+                <input asp-for="NewUser.Password">
+
+                <span asp-validation-for="NewUser.Confirm"></span>
+                <label asp-for="NewUser.Confirm">Confirm Password</label>
+                <input asp-for="NewUser.Confirm">
+
+                <input type="submit" value="Register">
+
+            </form>
+
+        </div>
+        <div>
+            <h1>Login</h1>
+
+            <form asp-action="CheckingUser" asp-controller="Home" method="POST">
+
+                <span asp-validation-for="CheckUser.Email"></span>
+                <label asp-for="CheckUser.Email">Email</label>
+                <input asp-for="CheckUser.Email">
+
+                <span asp-validation-for="CheckUser.Password"></span>
+                <label asp-for="CheckUser.Password">Password</label>
+                <input asp-for="CheckUser.Password">
+
+                <input type="submit" value="Login">
+        
+            </form>
+
+        </div>
+    </body>
+</html>
